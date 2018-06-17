@@ -145,7 +145,7 @@ namespace Mono.TextTemplating
 				return null;
 			}
 
-			var templateClassFullName = settings.Namespace + "." + settings.Name;
+			var templateClassFullName = settings.Name;
 
 #if FEATURE_APPDOMAINS
 			var domain = host.ProvideTemplatingAppDomain (content);
