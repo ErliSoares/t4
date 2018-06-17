@@ -208,7 +208,16 @@ namespace Mono.TextTemplating
  				var path = System.IO.Path.Combine (referencePath, assemblyReference);
  				if (System.IO.File.Exists (path))
  					return path;
- 			}
+				//Check if file dll exists in referencePath
+				if (!assemblyReference.EndsWith(".dll", StringComparison.OrdinalIgnoreCase) && !assemblyReference.EndsWith(".exe", StringComparison.OrdinalIgnoreCase))
+                {
+                    if (System.IO.File.Exists(path + ".dll"))
+                    {
+                        return path + ".dll";
+                    }
+                }
+
+             }
 
 			var assemblyName = new AssemblyName(assemblyReference);
 			if (assemblyName.Version != null)//Load via GAC and return full path

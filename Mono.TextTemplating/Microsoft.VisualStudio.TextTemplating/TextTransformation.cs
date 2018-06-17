@@ -53,12 +53,12 @@ namespace Microsoft.VisualStudio.TextTemplating
 		
 		#region Errors
 		
-		public void Error (string message)
+		public virtual void Error (string message)
 		{
 			Errors.Add (new CompilerError ("", 0, 0, "", message));
 		}
 		
-		public void Warning (string message)
+		public virtual void Warning (string message)
 		{
 			Errors.Add (new CompilerError ("", 0, 0, "", message) { IsWarning = true });
 		}
