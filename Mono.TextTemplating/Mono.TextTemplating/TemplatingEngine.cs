@@ -231,7 +231,7 @@ namespace Mono.TextTemplating
 
 
 			//https://github.com/dotnet/roslyn/wiki/Runtime-code-generation-using-Roslyn-compilations-in-.NET-Core-App
-			var trustedAssembliesPaths = ((string)AppContext.GetData ("TRUSTED_PLATFORM_ASSEMBLIES")).Split (Path.PathSeparator).ToDictionary (assemblyFile => Path.GetFileName (assemblyFile), StringComparer.OrdinalIgnoreCase);
+			var trustedAssembliesPaths = ((string)AppContext.GetData ("TRUSTED_PLATFORM_ASSEMBLIES")).Split (Path.PathSeparator).GroupBy(assemblyFile => Path.GetFileName(assemblyFile).ToLower()).Select(group => group.First()).ToDictionary (assemblyFile => Path.GetFileName(assemblyFile), StringComparer.OrdinalIgnoreCase);
 
 			foreach (var item in pars.ReferencedAssemblies) {
 				string assemblyFile = item;
